@@ -53,7 +53,7 @@ function draw(){
         drawing = [];
     })
     stroke(0);
-    strokeWeight(4);
+    strokeWeight(10);
     noFill();
     for(let i = 0; i < drawing.length; i++){
         var path = drawing[i];

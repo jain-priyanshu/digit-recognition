@@ -6,9 +6,6 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         x = request.json
-        y = sumArr(x)
-        print("HERE: ")
-        print(y)
         return request.json
     else:
         return render_template('index.html')
