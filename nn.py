@@ -1,6 +1,8 @@
 import numpy as np
 import csv
 import scipy.special
+import numpy
+import matplotlib.pyplot
 
 class neuralNetwork:
 
@@ -46,7 +48,7 @@ class neuralNetwork:
 input_nodes = 784
 hidden_nodes = 200
 output_nodes = 10
-learning_rate = 0.2
+learning_rate = 0.1
 nn = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 #reading weights from txt files
@@ -80,7 +82,7 @@ nn.changeWeights(wih, who)
 #training data
 # trainDataFile = open("mnist_dataset/mnist_train.csv", 'r')
 # trainDataList = trainDataFile.readlines()
-# epoch = 5
+# epoch = 1
 # for i in range(epoch):
 #     for data in trainDataList:
 #         allValues = data.split(',')

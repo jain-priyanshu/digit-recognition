@@ -5,8 +5,13 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        x = request.json
-        return request.json
+        data = request.json
+        data = data['arr']
+        inputs = (np.asfarray(data[0:]) / 255.0 * 0.99) + 0.01
+        outputs = nn.query(inputs)
+        nnAnswer = np.argmax(outputs)
+        print(nnAnswer)
+        return str(nnAnswer)
     else:
         return render_template('index.html')
 

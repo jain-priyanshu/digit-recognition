@@ -9,6 +9,7 @@ function setup(){
     canvas.mouseReleased(endPath);
     submitButton = createButton('Submit');
     clearButton = createButton('Clear');
+    var answer = document.getElementById('answer');
     submitButton.mousePressed(() => {
         var newCanvas = document.createElement("CANVAS");
         resample_single(canvas.canvas, 28, 28, true, newCanvas);
@@ -36,6 +37,7 @@ function setup(){
         fetch('/', options).then( async (res) => {
             var data = await res.json();
             console.log(data);
+            answer.innerHTML = data;
         });
     })
 }
@@ -53,7 +55,7 @@ function draw(){
         drawing = [];
     })
     stroke(0);
-    strokeWeight(10);
+    strokeWeight(20);
     noFill();
     for(let i = 0; i < drawing.length; i++){
         var path = drawing[i];
