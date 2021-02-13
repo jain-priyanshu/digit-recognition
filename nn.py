@@ -2,6 +2,7 @@ import numpy as np
 import csv
 import scipy.special
 import numpy
+import pickle
 import matplotlib.pyplot
 
 class neuralNetwork:
@@ -46,45 +47,23 @@ class neuralNetwork:
         self.who = who
 
 input_nodes = 784
-hidden_nodes = 200
+hidden_nodes = 250
 output_nodes = 10
-learning_rate = 0.1
+learning_rate = 0.01
 nn = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
-#reading weights from txt files
-all = []
-file = open('wih.txt', 'r')
-temp = file.readlines()
-for data in temp:
-    a = data.split(' ')
-    a.remove('\n')
-    a = map(float, a)
-    a = list(a)
-    all.append(a)
-file.close()
-wih = np.array(all)
-
-all = []
-file = open('who.txt', 'r')
-temp = file.readlines()
-for data in temp:
-    a = data.split(' ')
-    a.remove('\n')
-    a = map(float, a)
-    a = list(a)
-    all.append(a)
-file.close()
-who = np.array(all)
-
-#changing weights manually
-nn.changeWeights(wih, who)
-
-#training data
+#training from mnist data
+# print("Started Training")
 # trainDataFile = open("mnist_dataset/mnist_train.csv", 'r')
 # trainDataList = trainDataFile.readlines()
-# epoch = 1
+# epoch = 5
 # for i in range(epoch):
+#     print("EPOCH: ", i+1)
+#     count = 0
 #     for data in trainDataList:
+#         count += 1
+#         if(count % 600 == 0):
+#             print(count / 600)
 #         allValues = data.split(',')
 #         inputs = (np.asfarray(allValues[1:]) / 255.0 * 0.99) + 0.01
 #         targets = np.zeros(output_nodes) + 0.01
@@ -92,8 +71,21 @@ nn.changeWeights(wih, who)
 #         nn.train(inputs, targets)
 # trainDataFile.close()
 
+#Saving model with pickle
+# filename = 'weights.txt'
+# pickle.dump(nn.getWeights(), open(filename, 'ab'))
 
-#testing data
+# #loading wegihts with pickle
+# file = 'weights.txt'
+# t = pickle.load(open(file, 'rb'))
+# wih = t[0]
+# who = t[1]
+
+# #changing weights manually
+# nn.changeWeights(wih, who)
+
+# #testing mnist data
+# print("Started Testing")
 # testDataFile = open("mnist_dataset/mnist_test.csv", 'r')
 # testDataList = testDataFile.readlines()
 # total = 0
@@ -110,20 +102,3 @@ nn.changeWeights(wih, who)
 # print(len(testDataList))
 # print(accuracy * 100)
 # testDataFile.close()
-
-# saving weights to file
-# arr = nn.getWeights()
-# arr0 = arr[0]
-# arr1 = arr[1]
-
-# with open('wih.txt', 'a') as file:
-#     for i in range(len(arr0)):
-#         file.writelines("%f " % data for data in arr0[i])
-#         file.write("\n")
-# file.close()
-
-# with open('who.txt', 'a') as file:
-#     for i in range(len(arr1)):
-#         file.writelines("%f " % data for data in arr1[i])
-#         file.write("\n")
-# file.close()
