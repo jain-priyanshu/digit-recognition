@@ -1,7 +1,7 @@
 var drawing = [];
 var currentPath = [];
 var isDrawing = false;
-
+var temp;
 function setup(){
     stroke(4);
     canvas = createCanvas(280, 280);
@@ -9,7 +9,8 @@ function setup(){
     canvas.mouseReleased(endPath);
     submitButton = createButton('Submit');
     clearButton = createButton('Clear');
-    var answer = document.getElementById('answer');
+    var myAnswer = document.getElementById('myAnswer');
+    var tfAnswer = document.getElementById('tfAnswer');
     submitButton.mousePressed(() => {
         var newCanvas = document.createElement("CANVAS");
         resample_single(canvas.canvas, 28, 28, true, newCanvas);
@@ -36,8 +37,10 @@ function setup(){
         }
         fetch('/', options).then( async (res) => {
             var data = await res.json();
-            console.log(data);
-            answer.innerHTML = data;
+            temp = data;
+            print(data)
+            myAnswer.innerHTML = data[1];
+            tfAnswer.innerHTML = data[2];
         });
     })
 }

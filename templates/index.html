@@ -7,9 +7,14 @@
     <script src="{{ url_for('static', filename='p5.js') }}"></script>
     <script src="{{ url_for('static', filename='sketch.js')}}"></script>
     <script src="{{ url_for('static', filename='resize.js')}}"></script>
-
+    <style>
+        h1 {
+            display: inline
+        }
+    </style>
 </head>
 <body style="background-color:powderblue;">
-    <h1 id="answer"></h1>
+    <h1>My NN: </h1><h1 id="myAnswer" class="nobr"></h1><br>
+    <h1>TensorFlow NN: </h1><h1 id="tfAnswer"></h1>
 </body>
 </html>
